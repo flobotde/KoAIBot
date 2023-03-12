@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mobile-app:
+    build:
+      context: ./mobile-app
+    ports:
+      - "8080:8080"
+
+  AIBot:
+    build:
+      context: ./AIBot
+
+  mobile-app-tests:
+    build:
+      context: ./tests/mobile-app
+    depends_on:
+      - mobile-app
+    # Add environment variables here if needed
+    # environment:
+    #   - ENV_VAR_NAME=value
+
+  AIBot-tests:
+    build:
+      context: ./tests/AIBot
+    depends_on:
+      - AIBot
+    # Add environment variables here if needed
+    # environment:
+    #   - ENV_VAR_NAME=value
+
